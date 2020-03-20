@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
+        System.out.println("finding user...");
         return userMapper.findAll();
 
     }
