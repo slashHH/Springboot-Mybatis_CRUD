@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.slash.springboot.mapper.GoodsMapper">
+    <resultMap id="baseMap" type="com.slash.springboot.entity.Goods">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="VARCHAR"/>
+        <result property="image" column="image" jdbcType="VARCHAR"/>
+        <result property="brand" column="brand" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <select id="findAll" resultType="com.slash.springboot.entity.Goods">
  SELECT * FROM tb_goods
     </select>
@@ -11,4 +19,14 @@
         VALUES(#{title}, #{price}, #{image}, #{brand})
     </insert>
 
+    <!-- 条件查询 -->
+    <select id="findByPage" parameterType="com.slash.springboot.entity.Goods" resultMap="baseMap">
+        SELECT * FROM tb_goods WHERE 1=1
+        <if test="brand != null">
+            AND brand LIKE CONCAT('%', #{brand}, '%')
+        </if>
+        <if test="title != null">
+            AND title LIKE CONCAT('%', #{title}, '%')
+        </if>
+    </select>
 </mapper>

@@ -1,16 +1,14 @@
 package com.slash.springboot.controller;
 
 
-
+import com.github.pagehelper.Page;
 import com.slash.springboot.entity.Goods;
+import com.slash.springboot.entity.PageBean;
 import com.slash.springboot.entity.Result;
 import com.slash.springboot.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,8 +31,22 @@ public class GoodsController {
 
 
     @RequestMapping("/findAll")
-    public List<Goods> findAll(){
+    public List<Goods> findAll() {
         return goodsService.findAll();
     }
 
+    public List<Goods> findById(@RequestParam(value = "id", required = false) Long id) {
+        List<Goods> goodsList = goodsService.findById(id);
+        return goodsList;
+    }
+
+    @RequestMapping("findByConPage")
+    public PageBean findByConPage(
+            Goods goods, @RequestParam(value = "pageCode", required = false)
+            int pageCode,
+            @RequestParam(value = "pageSize", required = false)
+                    int pageSize) {
+        return goodsService.findByPage(goods, pageCode, pageSize);
+
+    }
 }
