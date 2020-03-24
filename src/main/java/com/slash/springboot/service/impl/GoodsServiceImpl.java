@@ -7,12 +7,14 @@ import com.slash.springboot.entity.PageBean;
 import com.slash.springboot.mapper.GoodsMapper;
 import com.slash.springboot.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GoodsServiceImpl implements GoodsService {
     @Autowired
-    GoodsMapper goodsMapper;
+    private GoodsMapper goodsMapper;
 
     @Override
     public PageBean findByPage(Goods goods, int pageCode, int pageSize) {
@@ -37,12 +39,12 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public void create(Goods goods) {
-goodsMapper.create(goods);
+        goodsMapper.create(goods);
     }
 
     @Override
     public void delete(Long... ids) {
-        for (Long id:ids){
+        for (Long id : ids) {
             goodsMapper.delete(id);
         }
     }

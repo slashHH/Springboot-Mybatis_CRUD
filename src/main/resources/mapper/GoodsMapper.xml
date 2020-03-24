@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.slash.springboot.mapper.GoodsMapper">
+    <select id="findAll" resultType="com.slash.springboot.entity.Goods">
+ SELECT * FROM tb_goods
+    </select>
+
+    <insert id="create" parameterType="com.slash.springboot.entity.Goods">
+         INSERT INTO tb_goods(title, price, image, brand)
+        VALUES(#{title}, #{price}, #{image}, #{brand})
+    </insert>
+
+</mapper>

@@ -1,8 +1,6 @@
 package com.slash.springboot.entity;
 
-import java.io.Serializable;
-
-public class Result implements Serializable {
+public class Result {
     //判断结果
     private boolean success;
     //返回信息

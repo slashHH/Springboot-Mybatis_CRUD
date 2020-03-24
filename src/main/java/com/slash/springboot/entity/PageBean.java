@@ -3,7 +3,9 @@ package com.slash.springboot.entity;
 import java.io.Serializable;
 import java.util.List;
 
+
 public class PageBean implements Serializable {
+
     //当前页
     private long total;
     //当前页记录
