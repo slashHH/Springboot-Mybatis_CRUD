@@ -33,4 +33,23 @@
     <delete id="delete" parameterType="Long">
         delete from tb_goods where id=#{id}
     </delete>
+
+    <update id="update" parameterType="com.slash.springboot.entity.Goods">
+        update from tb_goods
+        <set>
+            <if test="title!=null">
+                title=#{title},
+            </if>
+            <if test="price!=null">
+                price=#{price},
+            </if>
+            <if test="image!=null">
+                image=#{image},
+            </if>
+            <if test="brand!=null">
+                brand=#{brand},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper>

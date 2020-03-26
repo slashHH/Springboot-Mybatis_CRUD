@@ -50,10 +50,21 @@ public class GoodsController {
 
     }
 
+    //delete function
     @RequestMapping("delete")
     public Result delete(@RequestBody Long... ids) {
         try {
             goodsService.delete(ids);
+            return new Result(true, "更新数据成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, "发生未知错误");
+        }
+    }
+
+    public Result update(@RequestBody Goods goods) {
+        try {
+            goodsService.update(goods);
             return new Result(true, "更新数据成功");
         } catch (Exception e) {
             e.printStackTrace();
