@@ -49,4 +49,15 @@ public class GoodsController {
         return goodsService.findByPage(goods, pageCode, pageSize);
 
     }
+
+    @RequestMapping("delete")
+    public Result delete(@RequestBody Long... ids) {
+        try {
+            goodsService.delete(ids);
+            return new Result(true, "更新数据成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, "发生未知错误");
+        }
+    }
 }

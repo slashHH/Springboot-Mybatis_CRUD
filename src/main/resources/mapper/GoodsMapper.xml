@@ -29,4 +29,8 @@
             AND title LIKE CONCAT('%', #{title}, '%')
         </if>
     </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from tb_goods where id=#{id}
+    </delete>
 </mapper>
